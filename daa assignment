@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Random;
 
 public class SortingAlgorithms {
 
@@ -45,21 +46,41 @@ public class SortingAlgorithms {
     }
 
     public static void main(String[] args) {
-        int[] arr = {64, 34, 25, 12, 22, 11, 90};
+        int[] arr = generateRandomArray(1000); // Generate random array with 1000 elements
 
-        // Example usage
+        long startTime, endTime, duration;
+
+        // Insertion Sort
+        startTime = System.nanoTime();
         insertionSort(arr);
-        System.out.println("Insertion Sorted Array: " + Arrays.toString(arr));
+        endTime = System.nanoTime();
+        duration = (endTime - startTime) / 1000000; // Convert nanoseconds to milliseconds
+        System.out.println("Insertion Sort Time: " + duration + " milliseconds");
 
-        // Reset array for other sorting algorithms
-        arr = new int[]{64, 34, 25, 12, 22, 11, 90};
-
+        // Selection Sort
+        arr = generateRandomArray(1000); // Generate new random array for Selection Sort
+        startTime = System.nanoTime();
         selectionSort(arr);
-        System.out.println("Selection Sorted Array: " + Arrays.toString(arr));
+        endTime = System.nanoTime();
+        duration = (endTime - startTime) / 1000000; // Convert nanoseconds to milliseconds
+        System.out.println("Selection Sort Time: " + duration + " milliseconds");
 
-        arr = new int[]{64, 34, 25, 12, 22, 11, 90};
-
+        // Bubble Sort
+        arr = generateRandomArray(1000); // Generate new random array for Bubble Sort
+        startTime = System.nanoTime();
         bubbleSort(arr);
-        System.out.println("Bubble Sorted Array: " + Arrays.toString(arr));
+        endTime = System.nanoTime();
+        duration = (endTime - startTime) / 1000000; // Convert nanoseconds to milliseconds
+        System.out.println("Bubble Sort Time: " + duration + " milliseconds");
+    }
+
+    // Method to generate a random array of given size
+    public static int[] generateRandomArray(int size) {
+        int[] arr = new int[size];
+        Random rand = new Random();
+        for (int i = 0; i < size; i++) {
+            arr[i] = rand.nextInt(1000); // Generate random numbers between 0 and 999
+        }
+        return arr;
     }
 }
